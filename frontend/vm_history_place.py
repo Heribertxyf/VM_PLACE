@@ -4,10 +4,7 @@ from views import *
 
 def index(request):
     data = {}
-    # return render(request, "frontend/vm_place_history.html", data)
-    # return render(request, "frontend/customer_vm_place.html", data)
-    return render(request, "frontend/table_page.html", data)
-    # return render(request, "frontend/end.html", data)
+    return render(request, "frontend/vm_place_history.html", data)
 
 
 @csrf_exempt

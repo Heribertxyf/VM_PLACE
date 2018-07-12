@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from frontend import vm_history_place, customer_vm_search
+from frontend import views, vm_history_place, customer_vm_search
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', vm_history_place.index),
+    url(r'^$', views.index),
+    url(r'^vm_history/$', vm_history_place.index),
+    url(r'^customer_vms_history/$', customer_vm_search.index),
     url(r'^search/$', vm_history_place.vm_place_search),
     url(r'^do_search/$', vm_history_place.do_search),
     url(r'^customer_vm_search/$', customer_vm_search.do_search),

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VM Search</title>
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/yp_tool.js"></script>
+    <link type="text/css" href="/static/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="/static/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link type="text/css" href="/static/DataTables/datatables.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/static/DataTables/datatables.min.js"></script>
+</head>
+<body>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">Home</a></li>
+    <li role="presentation"><a href="/vm_history/">vm history place</a></li>
+    <li role="presentation"><a href="/customer_vms_history/">Customer vms place</a></li>
+</ul>
+{% block vm_history_place %}{% endblock %}
+{% block customer_vm_history_place %}{% endblock %}
+</body>
+</html>

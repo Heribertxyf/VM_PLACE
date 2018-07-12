@@ -2,6 +2,11 @@
 from views import *
 
 
+def index(request):
+    data = {}
+    return render(request, "frontend/customer_vm_place.html", data)
+
+
 @csrf_exempt
 def do_search(request):
     customer_name = request.GET.get('customer')

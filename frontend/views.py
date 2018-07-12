@@ -9,6 +9,10 @@ import json
 def render_json(data, status=200):
     return HttpResponse(json.dumps(data), content_type="text/json", status=status)
 
+def index(request):
+    data = {}
+    return render(request, "frontend/common.html", data)
+
 
 
 
