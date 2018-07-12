@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>VM_PLACE</title>
+</head>
+<body>
+<div>
+    <form action="/do_search/" method="get">
+        VM name:
+        <input type="text" name="vm_name" value="{{ vm_name }}">
+        <input type="submit" value="查询">
+    </form>
+</div>
+{% if not status %}
+    <p style="color: red;" id="error_msg">{{ error_msg }}</p>
+{% else %}
+    <div id="table_div">
+        <table>
+            <thead>
+            历史位置:
+            </thead>
+            <tbody>
+            {% for index, place in vm_place.iteritems %}
+            <tr>
+                <td>{{ index }}</td>
+                <td>{{ place }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}
+</body>
+</html>

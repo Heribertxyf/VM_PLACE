@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>VM_PLACE</title>
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/yp_tool.js"></script>
+</head>
+<body>
+<div style="height: 50px"></div>
+<div align="center">
+    <form>
+        VM NAME:
+        <input type="text" id="vm_name">
+        <input type="button" value="查询" onclick="search(vm_name)">
+        <p style="color: red;" id="error_msg"></p>
+    </form>
+</div>
+<hr>
+<p>历史位置：</p>
+<div id="table_div" align="center">
+    <table>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td><input type="text" id="place1" readonly></td>
+            <td>2</td>
+            <td><input type="text" id="place2" readonly></td>
+            <td>3</td>
+            <td><input type="text" id="place3" readonly></td>
+            <td>4</td>
+            <td><input type="text" id="place4" readonly></td>
+            <td>5</td>
+            <td><input type="text" id="place5" readonly></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+<script>
+    function search(vm_name) {
+        $.ajax({
+            type: 'POST',
+            url: '/search/',
+            data: add_csrf_token({"vm_name": vm_name.value}),
+            statusCode:{
+                200: function (data){
+                    $('#error_msg').html(data["error_msg"]);
+                    $("#place1").val(data["vm_place"]["1"]);
+                    $("#place2").val(data["vm_place"]["2"]);
+                    $("#place3").val(data["vm_place"]["3"]);
+                    $("#place4").val(data["vm_place"]["4"]);
+                    $("#place5").val(data["vm_place"]["5"]);
+                }
+            }
+        })
+    }
+</script>
+</html>
+
+

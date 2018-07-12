@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/yp_tool.js"></script>
+    <link type="text/css" href="/static/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="/static/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link type="text/css" href="/static/DataTables/datatables.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/static/DataTables/datatables.min.js"></script>
+</head>
+<body>
+<div style="height: 50px"></div>
+<div align="center">
+    <form>
+        CUSTOMER NAME:
+        <input type="text" id="customer">
+        <input type="button" value="查询" onclick="search(customer)">
+        <p style="color: red;" id="error_msg"></p>
+    </form>
+</div>
+<hr>
+<div align="center">
+    <table id="myTable" class="table-bordered display">
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>id</th>#}
+{#                <th>VM NAME</th>#}
+{#                <th>HOST</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            <tr>#}
+{#                <td>1</td>#}
+{#                <td>vm1</td>#}
+{#                <td>host1</td>#}
+{#            </tr>#}
+{#        </tbody>#}
+    </table>
+</div>
+</body>
+<script>
+    function search(customer) {
+        var lang = {
+            "sProcessing": "处理中...",
+            "sLengthMenu": "每页 _MENU_ 项",
+            "sZeroRecords": "没有匹配结果",
+            "sInfo": "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
+            "sInfoEmpty": "当前显示第 0 至 0 项，共 0 项",
+            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+            "sInfoPostFix": "",
+            "sSearch": "搜索:",
+            "bFilter": true,
+            "sUrl": "",
+            "sEmptyTable": "表中数据为空",
+            "sLoadingRecords": "载入中...",
+            "sInfoThousands": ",",
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页",
+                "sJump": "跳转"
+            },
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+
+        };
+        var table = $('#myTable').DataTable({
+            language: lang,
+            autoWidth: false,
+            stripeClasses: ["odd", "even"],
+            processing: true,
+            serverSide: true,
+            destroy: true,
+            searching: true,
+            bSort:false,
+            orderMulti: false,
+            order: [],
+            aLengthMenu: [10,15,20],
+            renderer: "bootstrap",
+            pagingType: "simple_numbers",
+            columnDefs: [{
+            }],
+            ajax: function (data, callback, settings) {
+                var param = {};
+                param.size = data.length;
+                param.page = (data.start / data.length)+1;
+                param.search = data.search.value;
+                param.customer = customer.value;
+                $.ajax({
+                    type: "GET",
+                    url: '/customer_vm_search/',
+                    data: param,
+                    dataType: "json",
+                    success: function (result) {
+                        {#alert("done get");#}
+                        $('#error_msg').html(result["error_msg"]);
+                        setTimeout(function () {
+                            var returnData = {};
+                            returnData.draw = data.draw;
+                            returnData.recordsTotal = result.total;
+                            returnData.recordsFiltered = result.total;
+                            returnData.data = result.data;
+                            callback(returnData);
+                        }, 200);
+                    }
+                });
+            },
+            columns: [
+                { title: "id" },
+                { title: "vm_name" },
+                { title: "host_name" },
+            ],
+
+        });
+    }
+
+
+</script>
+</html>
