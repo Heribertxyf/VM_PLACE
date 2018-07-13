@@ -1,19 +1,25 @@
 {% extends "frontend/common.html" %}
 {% block customer_vm_history_place %}
-<div style="height: 50px"></div>
-<div align="center">
-    <form>
-        CUSTOMER NAME:
-        <input type="text" id="customer">
-        <input type="button" value="查询" onclick="search(customer)">
-        <p style="color: red;" id="error_msg"></p>
-    </form>
+<div>
+    <div style="height: 10px"></div>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 absoluteCenter">
+            <div class="input-group">
+                <input type="text" class="form-control" id="customer" placeholder="CUSTOMER NAME">
+                <span class="input-group-btn in">
+                <button class="btn btn-default" type="button" onclick="search(customer)">查询</button>
+                </span>
+            </div>
+        </div>
+        <p class="lead" style="color: red; margin-bottom: 0px" id="error_msg"></p>
+    </div>
+    <div>
+        <table id="myTable" class="table-bordered"></table>
+    </div>
 </div>
-<hr>
-<div align="center">
-    <table id="myTable" class="table-bordered display"></table>
-</div>
-</body>
+
+
 <script>
     function search(customer) {
         var lang = {
@@ -45,7 +51,7 @@
         };
         var table = $('#myTable').DataTable({
             language: lang,
-            autoWidth: false,
+            autoWidth: true,
             stripeClasses: ["odd", "even"],
             processing: true,
             serverSide: true,

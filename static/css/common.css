@@ -800,7 +800,15 @@ ul li {
 
 
 
-
+.absoluteCenter{
+    width:600px;
+    height:400px;
+    position:absolute;
+    background: rgb(50,183,97);
+    left:50%; top:50%;
+    margin-left: -300px;
+    margin-top: -200px;
+}
 
 
 

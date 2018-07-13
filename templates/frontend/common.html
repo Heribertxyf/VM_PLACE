@@ -11,11 +11,13 @@
     <script type="text/javascript" src="/static/DataTables/datatables.min.js"></script>
 </head>
 <body>
-<ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">Home</a></li>
-    <li role="presentation"><a href="/vm_history/">vm history place</a></li>
-    <li role="presentation"><a href="/customer_vms_history/">Customer vms place</a></li>
-</ul>
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation"><a href="/" role="tab" data-toggle="tab">Home</a></li>
+        <li role="presentation"><a href="/vm_history/" role="tab" data-toggle="tab">vm history place</a></li>
+        <li role="presentation"><a href="/customer_vms_history/" role="tab" data-toggle="tab">Customer vms place</a></li>
+    </ul>
+</div>
 {% block vm_history_place %}{% endblock %}
 {% block customer_vm_history_place %}{% endblock %}
 </body>

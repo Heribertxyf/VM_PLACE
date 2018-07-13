@@ -1,35 +1,41 @@
 {% extends "frontend/common.html" %}
 {% block vm_history_place %}
-<div style="height: 50px"></div>
-<div align="center">
-    <form>
-        VM NAME:
-        <input type="text" id="vm_name">
-        <input type="button" value="查询" onclick="search(vm_name)">
-        <p style="color: red;" id="error_msg"></p>
-    </form>
+<div>
+    <div style="height: 10px"></div>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 absoluteCenter">
+            <div class="input-group">
+                <input class="form-control" type="text" id="vm_name" placeholder="VM NAME">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" onclick="search(vm_name)">查询</button>
+                </span>
+            </div>
+        </div>
+        <p class="lead" style="color: red; margin-bottom: 0px" id="error_msg"></p>
+    </div>
+    <div id="table_div" align="center">
+        <p class="lead text-left">历史位置：</p>
+        <table>
+            <tbody>
+            <tr>
+                <td width="30px">1.</td>
+                <td><input class="col-lg-11" type="text" id="place1" readonly></td>
+                <td width="30px">2.</td>
+                <td><input class="col-lg-11" type="text" id="place2" readonly></td>
+                <td width="30px">3.</td>
+                <td><input class="col-lg-11" type="text" id="place3" readonly></td>
+                <td width="30px">4.</td>
+                <td><input class="col-lg-11" type="text" id="place4" readonly></td>
+                <td width="30px">5.</td>
+                <td><input class="col-lg-11" type="text" id="place5" readonly></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-<hr>
-<p>历史位置：</p>
-<div id="table_div" align="center">
-    <table>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td><input type="text" id="place1" readonly></td>
-            <td>2</td>
-            <td><input type="text" id="place2" readonly></td>
-            <td>3</td>
-            <td><input type="text" id="place3" readonly></td>
-            <td>4</td>
-            <td><input type="text" id="place4" readonly></td>
-            <td>5</td>
-            <td><input type="text" id="place5" readonly></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-</body>
+
+
 <script>
     function search(vm_name) {
         $.ajax({
