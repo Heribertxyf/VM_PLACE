@@ -1,7 +1,7 @@
 {% extends "frontend/common.html" %}
 {% block vm_history_place %}
 <div>
-    <div style="height: 10px"></div>
+    <div style="height: 20px"></div>
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4 absoluteCenter">
@@ -14,6 +14,7 @@
         </div>
         <p class="lead" style="color: red; margin-bottom: 0px" id="error_msg"></p>
     </div>
+    <hr>
     <div id="table_div" align="center">
         <p class="lead text-left">历史位置：</p>
         <table>
@@ -40,16 +41,16 @@
     function search(vm_name) {
         $.ajax({
             type: 'POST',
-            url: '/search/',
+            url: '/vm_history_search/',
             data: add_csrf_token({"vm_name": vm_name.value}),
             statusCode:{
                 200: function (data){
-                    $('#error_msg').html(data["error_msg"]);
-                    $("#place1").val(data["vm_place"]["1"]);
-                    $("#place2").val(data["vm_place"]["2"]);
-                    $("#place3").val(data["vm_place"]["3"]);
-                    $("#place4").val(data["vm_place"]["4"]);
-                    $("#place5").val(data["vm_place"]["5"]);
+                    $('#error_msg').html(data["msg"]);
+                    $("#place1").val(data["vm_place"]["place1"]);
+                    $("#place2").val(data["vm_place"]["place2"]);
+                    $("#place3").val(data["vm_place"]["place3"]);
+                    $("#place4").val(data["vm_place"]["place4"]);
+                    $("#place5").val(data["vm_place"]["place5"]);
                 }
             }
         })
