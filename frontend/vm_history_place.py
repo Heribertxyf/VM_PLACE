@@ -17,9 +17,9 @@ def do_search(request):
 
 
 def post_test_host():
-    a = ['POD09-CLU01-H001', 'POD09-CLU01-H002']
-    error = json.dumps(a)
-    data = {"error": error}
+    a = {"POD09-CLU01-H001": True, "POD09-CLU01-H002": False}
+    b = json.dumps(a)
+    data = {"data": b}
     url = "%s/update_host_status" % CONFIG.CMDB
     result = post_API(url, data)
     print result
