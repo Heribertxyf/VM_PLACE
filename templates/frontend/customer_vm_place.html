@@ -78,7 +78,6 @@
                     data: param,
                     dataType: "json",
                     success: function (result) {
-                        {#alert("done get");#}
                         $('#error_msg').html(result["msg"]);
                         setTimeout(function () {
                             var returnData = {};
