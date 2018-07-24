@@ -1,0 +1,10 @@
+{% extends "frontend/common.html" %}
+{% block common %}
+    <div>
+        <h3 align="center">{% block title %}{% endblock %}</h3>
+        <div style="height: 40px"></div>
+        <div>
+            {% block form %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

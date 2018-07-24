@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from frontend import views, vm_history_place, customer_vm_search
+from frontend import views, vm_history_place, customer_vm_search, input_base_data
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,6 +24,8 @@ urlpatterns = [
     url(r'^vm_history_search/$', vm_history_place.do_search),
     url(r'^customer_vms/$', customer_vm_search.index),
     url(r'^customer_vms_search/$', customer_vm_search.do_search),
+    url(r'^input/site$', input_base_data.input_site),
+    url(r'^input/vc$', input_base_data.input_vc),
 
 
 ]

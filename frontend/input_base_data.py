@@ -2,9 +2,14 @@
 from views import *
 from vm_place.conf import CONFIG
 
-def index(request):
+def input_site(request):
     data = {}
-    return render(request, "frontend/vm_place_history.html", data)
+    return render(request, "frontend/input_site.html", data)
+
+
+def input_vc(request):
+    data = {}
+    return render(request, "frontend/input_vc.html", data)
 
 
 @csrf_exempt
@@ -14,6 +19,3 @@ def do_search(request):
     url = "%s/history_place" % CONFIG.CMDB
     data = post_API(url, body)
     return render_json(data)
-
-
-
